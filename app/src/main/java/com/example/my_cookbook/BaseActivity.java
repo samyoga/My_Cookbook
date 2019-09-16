@@ -9,13 +9,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private ProgressBar mprogressBar;
+    public ProgressBar mProgressBar;
 
     @Override
     public void setContentView(int layoutResID) {
         ConstraintLayout constraintLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout frameLayout = constraintLayout.findViewById(R.id.activity_content);
-        mprogressBar = constraintLayout.findViewById(R.id.progress_bar);
+        mProgressBar = constraintLayout.findViewById(R.id.progress_bar);
 
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
 
@@ -23,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showProgressBar(boolean visibility){
-        mprogressBar.setVisibility(visibility ? View.VISIBLE : View.INVISIBLE);
+        mProgressBar.setVisibility(visibility ? View.VISIBLE : View.INVISIBLE);
 
     }
 }
