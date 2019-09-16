@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class RecipeResponse {
 
+    //making single recipe request
+
     @SerializedName("recipe")
     @Expose()
     private Recipe recipe;
