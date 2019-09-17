@@ -8,6 +8,9 @@ import com.example.my_cookbook.models.Recipe;
 
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
+import static com.example.my_cookbook.util.Constants.NETWORK_TIMEOUT;
 
 public class RecipeApiClient {
 
@@ -37,5 +40,14 @@ public class RecipeApiClient {
 //                mRecipes.postValue();
             }
         });
+
+        AppExecutors.getInstance().getmNetworkIO().schedule(new Runnable() {
+            @Override
+            public void run() {
+
+                //lets the user know its timed out
+                handler.cancel(true);
+            }
+        }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 }
