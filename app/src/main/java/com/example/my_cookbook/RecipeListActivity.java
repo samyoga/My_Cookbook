@@ -1,6 +1,8 @@
 package com.example.my_cookbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.example.my_cookbook.requests.ServiceGenerator;
 import com.example.my_cookbook.requests.responses.RecipeResponse;
 import com.example.my_cookbook.requests.responses.RecipeSearchResponse;
 import com.example.my_cookbook.util.Constants;
+import com.example.my_cookbook.viewmodels.RecipeListViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import retrofit2.http.Query;
 public class RecipeListActivity extends BaseActivity {
 
     private static final String TAG = "RecipeListActivity";
+    private RecipeListViewModel recipeListViewModel;
 
     private Button test;
 
@@ -33,12 +37,17 @@ public class RecipeListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
-        test = findViewById(R.id.test);
+        recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
 
-        test.setOnClickListener(new View.OnClickListener() {
+        subscribeObservers();
+
+    }
+
+    private void subscribeObservers(){
+        recipeListViewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
             @Override
-            public void onClick(View view) {
-               testRetrofitRequest();
+            public void onChanged(List<Recipe> recipes) {
+
             }
         });
     }
