@@ -13,6 +13,7 @@ import com.example.my_cookbook.requests.RecipeAPI;
 import com.example.my_cookbook.requests.ServiceGenerator;
 import com.example.my_cookbook.requests.responses.RecipeResponse;
 import com.example.my_cookbook.util.Constants;
+import com.example.my_cookbook.util.Testing;
 import com.example.my_cookbook.viewmodels.RecipeListViewModel;
 
 import java.io.IOException;
@@ -50,9 +51,7 @@ public class RecipeListActivity extends BaseActivity {
             @Override
             public void onChanged(List<Recipe> recipes) {
                 if (recipes !=null){
-                    for (Recipe recipe: recipes){
-                        Log.d(TAG, "onChanged " + recipe.getTitle());
-                    }
+                    Testing.printRecipes(recipes, "recipes: ");
                 }
             }
         });
