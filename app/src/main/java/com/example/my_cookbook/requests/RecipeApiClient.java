@@ -103,7 +103,7 @@ public class RecipeApiClient {
 
         private Call<RecipeSearchResponse> getRecipes(String query, int pageNumber){
             return ServiceGenerator.getRecipeAPI().searchRecipe(
-                    Constants.BASE_URL,
+                    Constants.API_KEY,
                     query,
                     String.valueOf(pageNumber)
             );
