@@ -1,31 +1,21 @@
 package com.example.my_cookbook;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+
 
 import com.example.my_cookbook.adapters.OnRecipeListener;
 import com.example.my_cookbook.adapters.RecipeRecycleAdapter;
 import com.example.my_cookbook.models.Recipe;
-import com.example.my_cookbook.requests.RecipeAPI;
-import com.example.my_cookbook.requests.ServiceGenerator;
-import com.example.my_cookbook.requests.responses.RecipeResponse;
-import com.example.my_cookbook.util.Constants;
 import com.example.my_cookbook.util.Testing;
 import com.example.my_cookbook.viewmodels.RecipeListViewModel;
 
-import java.io.IOException;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RecipeListActivity extends BaseActivity implements OnRecipeListener {
 
@@ -39,12 +29,11 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_list);
         mRecyclerView = findViewById(R.id.recipe_list);
-
         mRecipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
 
         initRecyclerView();
         subscribeObservers();
-        testRetrofitRequest();
+        initSearchView();
     }
 
     private void subscribeObservers(){
@@ -70,8 +59,22 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
         mRecipeListViewModel.searchRecipesApi(query, pageNumber);
     }
 
-    private void testRetrofitRequest(){
-        searchRecipesApi("chicken breast", 1);
+    private void initSearchView(){
+        final SearchView searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                mAdapter.displayLoading();
+                mRecipeListViewModel.searchRecipesApi(s, 1);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
     }
 
     @Override

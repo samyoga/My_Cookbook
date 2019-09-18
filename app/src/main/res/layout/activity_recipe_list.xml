@@ -17,6 +17,15 @@
             android:id="@+id/toolbar"
             app:layout_scrollFlags="scroll|enterAlways">
 
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/search_view"
+                app:queryHint="chicken..."
+                >
+
+            </androidx.appcompat.widget.SearchView>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
