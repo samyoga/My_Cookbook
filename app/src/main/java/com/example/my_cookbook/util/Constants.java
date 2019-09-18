@@ -6,4 +6,20 @@ public class Constants {
     public static final int NETWORK_TIMEOUT = 3000;
 
     public static final String API_KEY = "2d527433ae8a3a9957f241fb66c43a2d"; //Use differet API key as food2fork provides limited query search per day and it might just run out
+
+    public static final String[] DEFAULT_SEARCH_CATEGORIES =
+            {"Barbeque", "Breakfast", "Chicken", "Beef", "Brunch", "Dinner", "Wine", "Italian"};
+
+    public static final String[] DEFAULT_SEARCH_CATEGORY_IMAGES =
+            {
+                    "barbeque",
+                    "breakfast",
+                    "chicken",
+                    "beef",
+                    "brunch",
+                    "dinner",
+                    "wine",
+                    "italian"
+            };
+
 }

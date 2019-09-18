@@ -53,4 +53,7 @@ dependencies {
 
     // Design support
     implementation "com.google.android.material:material:$support_version"
+
+    // Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 }
