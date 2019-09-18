@@ -13,6 +13,7 @@ import com.example.my_cookbook.adapters.OnRecipeListener;
 import com.example.my_cookbook.adapters.RecipeRecycleAdapter;
 import com.example.my_cookbook.models.Recipe;
 import com.example.my_cookbook.util.Testing;
+import com.example.my_cookbook.util.VerticalSpacingItemDecorator;
 import com.example.my_cookbook.viewmodels.RecipeListViewModel;
 
 import java.util.List;
@@ -55,6 +56,8 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
 
     private void initRecyclerView(){
         mAdapter = new RecipeRecycleAdapter(this);
+        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
+        mRecyclerView.addItemDecoration(itemDecorator);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
