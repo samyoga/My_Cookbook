@@ -49,6 +49,7 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
                     if (mRecipeListViewModel.isViewingRecipes()){
                         Testing.printRecipes(recipes, "recipes: ");
                         mAdapter.setRecipes(recipes);
+                        mRecipeListViewModel.setIsPerformingQuery(false);
                     }
                 }
 

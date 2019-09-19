@@ -17,10 +17,12 @@ public class RecipeListViewModel extends ViewModel {
 
     private RecipeRepository mRecipeRepository;
     private boolean mIsViewingRecipes;
+    private boolean mIsPerformingQuery;
 
     public RecipeListViewModel() {
         mIsViewingRecipes = false;
         mRecipeRepository = RecipeRepository.getInstance();
+        mIsPerformingQuery = false;
     }
 
     public LiveData<List<Recipe>> getRecipes(){
@@ -40,8 +42,20 @@ public class RecipeListViewModel extends ViewModel {
         mIsViewingRecipes = isViewingRecipes;
     }
 
+    public void setIsPerformingQuery(boolean isPerformingQuery){
+        mIsPerformingQuery = isPerformingQuery;
+    }
+
+    public boolean isPerformingQuery(){
+        return mIsPerformingQuery;
+    }
+
     public boolean onBackPressed(){
-        if (mIsViewingRecipes){
+        if (mIsPerformingQuery){
+            //cancel the query
+            mRecipeRepository.cancelRequest();
+        }
+        else if (mIsViewingRecipes){
             mIsViewingRecipes = false;
             return false;
         }
