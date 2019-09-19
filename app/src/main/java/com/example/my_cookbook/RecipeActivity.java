@@ -59,8 +59,8 @@ public class RecipeActivity extends BaseActivity {
             public void onChanged(Recipe recipe) {
                 if (recipe != null){
                     if (recipe.getRecipe_id().equals(mRecipeViewModel.getRecipeId())){
-                        mRecipeViewModel.setRetrievedRecipe(true);
                         setRecipeProperties(recipe);
+                        mRecipeViewModel.setRetrievedRecipe(true);
                     }
                 }
             }
