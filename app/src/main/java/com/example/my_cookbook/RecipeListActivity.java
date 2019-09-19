@@ -16,7 +16,7 @@ import android.view.MenuItem;
 
 
 import com.example.my_cookbook.adapters.OnRecipeListener;
-import com.example.my_cookbook.adapters.RecipeRecycleAdapter;
+import com.example.my_cookbook.adapters.RecipeRecyclerAdapter;
 import com.example.my_cookbook.models.Recipe;
 import com.example.my_cookbook.util.Testing;
 import com.example.my_cookbook.util.VerticalSpacingItemDecorator;
@@ -29,7 +29,7 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
     private static final String TAG = "RecipeListActivity";
     private RecipeListViewModel mRecipeListViewModel;
     private RecyclerView mRecyclerView;
-    private RecipeRecycleAdapter mAdapter;
+    private RecipeRecyclerAdapter mAdapter;
     private SearchView mSearchView;
 
     @Override
@@ -69,13 +69,16 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
         mRecipeListViewModel.isQueryExhausted().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if (aBoolean) Log.d(TAG, "onChanged: the query is exhausted...");
+                if (aBoolean) {
+                    Log.d(TAG, "onChanged: the query is exhausted...");
+                    mAdapter.setQueryExhausted();
+                }
             }
         });
     }
 
     private void initRecyclerView(){
-        mAdapter = new RecipeRecycleAdapter(this);
+        mAdapter = new RecipeRecyclerAdapter(this);
         VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(30);
         mRecyclerView.addItemDecoration(itemDecorator);
         mRecyclerView.setAdapter(mAdapter);
