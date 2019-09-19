@@ -12,7 +12,7 @@ public class RecipeRepository {
 
     private static RecipeRepository instance;
     private static RecipeApiClient mRecipeApiClient;
-    private String mQuery;
+    private String mQuery, mRecipeId;
     private int mPageNumber;
 
     public static RecipeRepository getInstance(){
@@ -31,6 +31,11 @@ public class RecipeRepository {
     }
     public LiveData<Recipe> getRecipe(){
         return mRecipeApiClient.getRecipe();
+    }
+
+    public void searchRecipeById(String recipeId){
+        mRecipeId = recipeId;
+        mRecipeApiClient.searchRecipeId(recipeId);
     }
 
     public void searchRecipesApi(String query, int pageNumber){
