@@ -1,6 +1,7 @@
 package com.example.my_cookbook;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ public class RecipeActivity extends BaseActivity {
     private TextView mRecipeTitle, mRecipeRank;
     private LinearLayout mRecipeIngredientsContainer;
     private ScrollView mScrollView;
+
+    private static final String TAG = "RecipeActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class RecipeActivity extends BaseActivity {
     private void getIncomingIntent(){
         if (getIntent().hasExtra("recipe")){
             Recipe recipe = getIntent().getParcelableExtra("recipe");
+            Log.d(TAG, "getIncomingIntent: " + recipe.getTitle());
         }
     }
 }
