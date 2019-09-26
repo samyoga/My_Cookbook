@@ -56,10 +56,11 @@ public class RecipeActivity extends BaseActivity {
     private void subscribeObservers(){
         mRecipeViewModel.getRecipe().observe(this, new Observer<Recipe>() {
             @Override
-            public void onChanged(Recipe recipe) {
+            public void onChanged(@Nullable Recipe recipe) {
                 if (recipe != null){
                     if (recipe.getRecipe_id().equals(mRecipeViewModel.getRecipeId())){
                         setRecipeProperties(recipe);
+                        Log.d(TAG, "onChanged: " + recipe.getIngredients().length);
                         mRecipeViewModel.setRetrievedRecipe(true);
                     }
                 }
@@ -70,7 +71,7 @@ public class RecipeActivity extends BaseActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean && !mRecipeViewModel.didRetrieveRecipe()){
-                    Log.d(TAG, "onChange: timed out...");
+                    Log.d(TAG, "onChanged : timed out...");
                     displayErrorScreen("Error retrieving data. Check network connection.");
                 }
             }

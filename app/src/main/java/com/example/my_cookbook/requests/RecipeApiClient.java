@@ -71,7 +71,7 @@ public class RecipeApiClient {
         }, NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
-    public void searchRecipeId(String recipeId){
+    public void searchRecipeById(String recipeId){
         if (mRetrieveRecipeRunnable != null){
             mRetrieveRecipeRunnable = null;
         }
@@ -170,6 +170,7 @@ public class RecipeApiClient {
                     Log.e(TAG, "error: " + error);
                     mRecipe.postValue(null);
                 }
+                Log.d(TAG, "run: ");
             } catch (IOException e) {
                 e.printStackTrace();
                 mRecipe.postValue(null);

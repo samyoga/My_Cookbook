@@ -59,6 +59,7 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
                     if (mRecipeListViewModel.isViewingRecipes()){
                         Testing.printRecipes(recipes, "recipes: ");
                         mAdapter.setRecipes(recipes);
+                        mAdapter.notifyDataSetChanged();
                         mRecipeListViewModel.setIsPerformingQuery(false);
                     }
                 }
@@ -134,6 +135,7 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
     private void displaySearchCategories(){
         mRecipeListViewModel.setIsViewingRecipes(false);
         mAdapter.displaySearchCategories();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

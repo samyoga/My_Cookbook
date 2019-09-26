@@ -1,6 +1,7 @@
 package com.example.my_cookbook.adapters;
 
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
             ((RecipeViewHolder)holder).title.setText(mRecipes.get(position).getTitle());
             ((RecipeViewHolder)holder).publisher.setText(mRecipes.get(position).getPublisher());
+
             ((RecipeViewHolder)holder).socialScore.setText(String.valueOf(Math.round(mRecipes.get(position).getSocial_rank())));
 
         } else if (itemViewType == CATEGORY_TYPE){

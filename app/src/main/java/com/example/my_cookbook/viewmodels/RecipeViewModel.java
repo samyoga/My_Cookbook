@@ -1,5 +1,7 @@
 package com.example.my_cookbook.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 

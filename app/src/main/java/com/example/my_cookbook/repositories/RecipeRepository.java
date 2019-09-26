@@ -1,5 +1,7 @@
 package com.example.my_cookbook.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -76,7 +78,7 @@ public class RecipeRepository {
     }
 
     public void searchRecipeById(String recipeId){
-        mRecipeApiClient.searchRecipeId(recipeId);
+        mRecipeApiClient.searchRecipeById(recipeId);
     }
 
     public void searchRecipesApi(String query, int pageNumber){
